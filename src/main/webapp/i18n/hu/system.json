@@ -1,0 +1,23 @@
+{
+    "msstoolsApp": {
+        "system" : {
+            "home": {
+                "title": "Systems",
+                "createLabel": "Egy új System létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Systemt"
+            },
+            "created": "Egy új System lett létrehozva {{ param }} azonosítóval",
+            "updated": "A System módosítva lett {{ param }} azonosítóval",
+            "deleted": "A System törölve lett {{ param }} azonosítóval",
+            "delete": {
+                "question": "Biztos benne, hogy törölni szeretné az Systemt {{ id }} azonosítóval?"
+            },
+            "detail": {
+                "title": "System"
+            },
+            "name": "Name",
+            "ip": "Ip",
+            "port": "Port"
+        }
+    }
+}

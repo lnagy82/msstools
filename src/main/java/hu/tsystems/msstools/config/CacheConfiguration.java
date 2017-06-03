@@ -42,6 +42,7 @@ public class CacheConfiguration {
             cm.createCache(hu.tsystems.msstools.domain.User.class.getName() + ".authorities", jcacheConfiguration);
             cm.createCache(hu.tsystems.msstools.domain.PersistentToken.class.getName(), jcacheConfiguration);
             cm.createCache(hu.tsystems.msstools.domain.User.class.getName() + ".persistentTokens", jcacheConfiguration);
+            cm.createCache(hu.tsystems.msstools.domain.System.class.getName(), jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }
