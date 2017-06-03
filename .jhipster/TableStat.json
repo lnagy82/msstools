@@ -1,0 +1,98 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "system",
+            "otherEntityName": "system",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "name"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "schemaname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "relname",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "seqScan",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "seqTupRead",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "idxScan",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "idxTupFetch",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "nTupIns",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "nTupUpd",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "nTupDel",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "nTupHotUpd",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "nLiveTup",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "nDeadTup",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "lastVacuum",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "lastAutovacuum",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "lastAnalyze",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "lastAutoanalyze",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "vacuumCount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "autovacuumCount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "analyzeCount",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "autoanalyzeCount",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "changelogDate": "20170603184942",
+    "dto": "mapstruct",
+    "service": "serviceClass",
+    "entityTableName": "table_stat",
+    "pagination": "pagination"
+}

@@ -1,0 +1,168 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myTableStatLabel" data-translate="msstoolsApp.tableStat.home.createOrEditLabel">Create or edit a Table Stat</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.tableStat.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.tableStat.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.schemaname" for="field_schemaname">Schemaname</label>
+            <input type="text" class="form-control" name="schemaname" id="field_schemaname"
+                    ng-model="vm.tableStat.schemaname"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.relname" for="field_relname">Relname</label>
+            <input type="text" class="form-control" name="relname" id="field_relname"
+                    ng-model="vm.tableStat.relname"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.seqScan" for="field_seqScan">Seq Scan</label>
+            <input type="number" class="form-control" name="seqScan" id="field_seqScan"
+                    ng-model="vm.tableStat.seqScan"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.seqTupRead" for="field_seqTupRead">Seq Tup Read</label>
+            <input type="number" class="form-control" name="seqTupRead" id="field_seqTupRead"
+                    ng-model="vm.tableStat.seqTupRead"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.idxScan" for="field_idxScan">Idx Scan</label>
+            <input type="number" class="form-control" name="idxScan" id="field_idxScan"
+                    ng-model="vm.tableStat.idxScan"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.idxTupFetch" for="field_idxTupFetch">Idx Tup Fetch</label>
+            <input type="number" class="form-control" name="idxTupFetch" id="field_idxTupFetch"
+                    ng-model="vm.tableStat.idxTupFetch"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.nTupIns" for="field_nTupIns">N Tup Ins</label>
+            <input type="number" class="form-control" name="nTupIns" id="field_nTupIns"
+                    ng-model="vm.tableStat.nTupIns"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.nTupUpd" for="field_nTupUpd">N Tup Upd</label>
+            <input type="number" class="form-control" name="nTupUpd" id="field_nTupUpd"
+                    ng-model="vm.tableStat.nTupUpd"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.nTupDel" for="field_nTupDel">N Tup Del</label>
+            <input type="number" class="form-control" name="nTupDel" id="field_nTupDel"
+                    ng-model="vm.tableStat.nTupDel"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.nTupHotUpd" for="field_nTupHotUpd">N Tup Hot Upd</label>
+            <input type="number" class="form-control" name="nTupHotUpd" id="field_nTupHotUpd"
+                    ng-model="vm.tableStat.nTupHotUpd"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.nLiveTup" for="field_nLiveTup">N Live Tup</label>
+            <input type="number" class="form-control" name="nLiveTup" id="field_nLiveTup"
+                    ng-model="vm.tableStat.nLiveTup"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.nDeadTup" for="field_nDeadTup">N Dead Tup</label>
+            <input type="number" class="form-control" name="nDeadTup" id="field_nDeadTup"
+                    ng-model="vm.tableStat.nDeadTup"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.lastVacuum" for="field_lastVacuum">Last Vacuum</label>
+                <div class="input-group">
+                    <input id="field_lastVacuum" type="text" class="form-control" name="lastVacuum" datetime-picker="{{dateformat}}" ng-model="vm.tableStat.lastVacuum" is-open="vm.datePickerOpenStatus.lastVacuum"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastVacuum')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.lastAutovacuum" for="field_lastAutovacuum">Last Autovacuum</label>
+                <div class="input-group">
+                    <input id="field_lastAutovacuum" type="text" class="form-control" name="lastAutovacuum" datetime-picker="{{dateformat}}" ng-model="vm.tableStat.lastAutovacuum" is-open="vm.datePickerOpenStatus.lastAutovacuum"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastAutovacuum')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.lastAnalyze" for="field_lastAnalyze">Last Analyze</label>
+                <div class="input-group">
+                    <input id="field_lastAnalyze" type="text" class="form-control" name="lastAnalyze" datetime-picker="{{dateformat}}" ng-model="vm.tableStat.lastAnalyze" is-open="vm.datePickerOpenStatus.lastAnalyze"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastAnalyze')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.lastAutoanalyze" for="field_lastAutoanalyze">Last Autoanalyze</label>
+                <div class="input-group">
+                    <input id="field_lastAutoanalyze" type="text" class="form-control" name="lastAutoanalyze" datetime-picker="{{dateformat}}" ng-model="vm.tableStat.lastAutoanalyze" is-open="vm.datePickerOpenStatus.lastAutoanalyze"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('lastAutoanalyze')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.vacuumCount" for="field_vacuumCount">Vacuum Count</label>
+            <input type="number" class="form-control" name="vacuumCount" id="field_vacuumCount"
+                    ng-model="vm.tableStat.vacuumCount"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.autovacuumCount" for="field_autovacuumCount">Autovacuum Count</label>
+            <input type="number" class="form-control" name="autovacuumCount" id="field_autovacuumCount"
+                    ng-model="vm.tableStat.autovacuumCount"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.analyzeCount" for="field_analyzeCount">Analyze Count</label>
+            <input type="number" class="form-control" name="analyzeCount" id="field_analyzeCount"
+                    ng-model="vm.tableStat.analyzeCount"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="msstoolsApp.tableStat.autoanalyzeCount" for="field_autoanalyzeCount">Autoanalyze Count</label>
+            <input type="number" class="form-control" name="autoanalyzeCount" id="field_autoanalyzeCount"
+                    ng-model="vm.tableStat.autoanalyzeCount"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="msstoolsApp.tableStat.system" for="field_system">System</label>
+            <select class="form-control" id="field_system" name="system" ng-model="vm.tableStat.systemId" ng-options="system.id as system.name for system in vm.systems"            >
+                <option value=""></option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

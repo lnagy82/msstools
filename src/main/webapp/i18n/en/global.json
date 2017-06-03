@@ -8,6 +8,7 @@
             "entities": {
                 "main": "Entities",
                 "system": "System",
+                "tableStat": "Table Stat",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

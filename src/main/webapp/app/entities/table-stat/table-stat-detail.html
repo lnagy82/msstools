@@ -1,0 +1,103 @@
+
+<div>
+    <h2><span data-translate="msstoolsApp.tableStat.detail.title">Table Stat</span> {{vm.tableStat.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="msstoolsApp.tableStat.schemaname">Schemaname</span></dt>
+        <dd>
+            <span>{{vm.tableStat.schemaname}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.relname">Relname</span></dt>
+        <dd>
+            <span>{{vm.tableStat.relname}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.seqScan">Seq Scan</span></dt>
+        <dd>
+            <span>{{vm.tableStat.seqScan}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.seqTupRead">Seq Tup Read</span></dt>
+        <dd>
+            <span>{{vm.tableStat.seqTupRead}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.idxScan">Idx Scan</span></dt>
+        <dd>
+            <span>{{vm.tableStat.idxScan}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.idxTupFetch">Idx Tup Fetch</span></dt>
+        <dd>
+            <span>{{vm.tableStat.idxTupFetch}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.nTupIns">N Tup Ins</span></dt>
+        <dd>
+            <span>{{vm.tableStat.nTupIns}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.nTupUpd">N Tup Upd</span></dt>
+        <dd>
+            <span>{{vm.tableStat.nTupUpd}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.nTupDel">N Tup Del</span></dt>
+        <dd>
+            <span>{{vm.tableStat.nTupDel}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.nTupHotUpd">N Tup Hot Upd</span></dt>
+        <dd>
+            <span>{{vm.tableStat.nTupHotUpd}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.nLiveTup">N Live Tup</span></dt>
+        <dd>
+            <span>{{vm.tableStat.nLiveTup}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.nDeadTup">N Dead Tup</span></dt>
+        <dd>
+            <span>{{vm.tableStat.nDeadTup}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.lastVacuum">Last Vacuum</span></dt>
+        <dd>
+            <span>{{vm.tableStat.lastVacuum | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.lastAutovacuum">Last Autovacuum</span></dt>
+        <dd>
+            <span>{{vm.tableStat.lastAutovacuum | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.lastAnalyze">Last Analyze</span></dt>
+        <dd>
+            <span>{{vm.tableStat.lastAnalyze | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.lastAutoanalyze">Last Autoanalyze</span></dt>
+        <dd>
+            <span>{{vm.tableStat.lastAutoanalyze | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.vacuumCount">Vacuum Count</span></dt>
+        <dd>
+            <span>{{vm.tableStat.vacuumCount}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.autovacuumCount">Autovacuum Count</span></dt>
+        <dd>
+            <span>{{vm.tableStat.autovacuumCount}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.analyzeCount">Analyze Count</span></dt>
+        <dd>
+            <span>{{vm.tableStat.analyzeCount}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.autoanalyzeCount">Autoanalyze Count</span></dt>
+        <dd>
+            <span>{{vm.tableStat.autoanalyzeCount}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.system">System</span></dt>
+        <dd>
+            <a ui-sref="system-detail({id:vm.tableStat.systemId})">{{vm.tableStat.systemName}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="table-stat-detail.edit({id:vm.tableStat.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

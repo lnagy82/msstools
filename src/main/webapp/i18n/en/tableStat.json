@@ -1,0 +1,41 @@
+{
+    "msstoolsApp": {
+        "tableStat" : {
+            "home": {
+                "title": "Table Stats",
+                "createLabel": "Create a new Table Stat",
+                "createOrEditLabel": "Create or edit a Table Stat"
+            },
+            "created": "A new Table Stat is created with identifier {{ param }}",
+            "updated": "A Table Stat is updated with identifier {{ param }}",
+            "deleted": "A Table Stat is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Table Stat {{ id }}?"
+            },
+            "detail": {
+                "title": "Table Stat"
+            },
+            "schemaname": "Schemaname",
+            "relname": "Relname",
+            "seqScan": "Seq Scan",
+            "seqTupRead": "Seq Tup Read",
+            "idxScan": "Idx Scan",
+            "idxTupFetch": "Idx Tup Fetch",
+            "nTupIns": "N Tup Ins",
+            "nTupUpd": "N Tup Upd",
+            "nTupDel": "N Tup Del",
+            "nTupHotUpd": "N Tup Hot Upd",
+            "nLiveTup": "N Live Tup",
+            "nDeadTup": "N Dead Tup",
+            "lastVacuum": "Last Vacuum",
+            "lastAutovacuum": "Last Autovacuum",
+            "lastAnalyze": "Last Analyze",
+            "lastAutoanalyze": "Last Autoanalyze",
+            "vacuumCount": "Vacuum Count",
+            "autovacuumCount": "Autovacuum Count",
+            "analyzeCount": "Analyze Count",
+            "autoanalyzeCount": "Autoanalyze Count",
+            "system": "System"
+        }
+    }
+}

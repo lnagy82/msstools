@@ -1,0 +1,41 @@
+{
+    "msstoolsApp": {
+        "tableStat" : {
+            "home": {
+                "title": "TableStats",
+                "createLabel": "Egy új Table Stat létrehozása",
+                "createOrEditLabel": "Hozzon létre, vagy módosítson Table Statt"
+            },
+            "created": "Egy új Table Stat lett létrehozva {{ param }} azonosítóval",
+            "updated": "A Table Stat módosítva lett {{ param }} azonosítóval",
+            "deleted": "A Table Stat törölve lett {{ param }} azonosítóval",
+            "delete": {
+                "question": "Biztos benne, hogy törölni szeretné az Table Statt {{ id }} azonosítóval?"
+            },
+            "detail": {
+                "title": "Table Stat"
+            },
+            "schemaname": "Schemaname",
+            "relname": "Relname",
+            "seqScan": "Seq Scan",
+            "seqTupRead": "Seq Tup Read",
+            "idxScan": "Idx Scan",
+            "idxTupFetch": "Idx Tup Fetch",
+            "nTupIns": "N Tup Ins",
+            "nTupUpd": "N Tup Upd",
+            "nTupDel": "N Tup Del",
+            "nTupHotUpd": "N Tup Hot Upd",
+            "nLiveTup": "N Live Tup",
+            "nDeadTup": "N Dead Tup",
+            "lastVacuum": "Last Vacuum",
+            "lastAutovacuum": "Last Autovacuum",
+            "lastAnalyze": "Last Analyze",
+            "lastAutoanalyze": "Last Autoanalyze",
+            "vacuumCount": "Vacuum Count",
+            "autovacuumCount": "Autovacuum Count",
+            "analyzeCount": "Analyze Count",
+            "autoanalyzeCount": "Autoanalyze Count",
+            "system": "System"
+        }
+    }
+}

@@ -1,0 +1,102 @@
+<div>
+    <h2 data-translate="msstoolsApp.tableStat.home.title">Table Stats</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="table-stat.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="msstoolsApp.tableStat.home.createLabel">
+                        Create new Table Stat
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="schemaname"><span data-translate="msstoolsApp.tableStat.schemaname">Schemaname</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="relname"><span data-translate="msstoolsApp.tableStat.relname">Relname</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="seqScan"><span data-translate="msstoolsApp.tableStat.seqScan">Seq Scan</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="seqTupRead"><span data-translate="msstoolsApp.tableStat.seqTupRead">Seq Tup Read</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="idxScan"><span data-translate="msstoolsApp.tableStat.idxScan">Idx Scan</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="idxTupFetch"><span data-translate="msstoolsApp.tableStat.idxTupFetch">Idx Tup Fetch</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nTupIns"><span data-translate="msstoolsApp.tableStat.nTupIns">N Tup Ins</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nTupUpd"><span data-translate="msstoolsApp.tableStat.nTupUpd">N Tup Upd</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nTupDel"><span data-translate="msstoolsApp.tableStat.nTupDel">N Tup Del</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nTupHotUpd"><span data-translate="msstoolsApp.tableStat.nTupHotUpd">N Tup Hot Upd</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nLiveTup"><span data-translate="msstoolsApp.tableStat.nLiveTup">N Live Tup</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="nDeadTup"><span data-translate="msstoolsApp.tableStat.nDeadTup">N Dead Tup</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastVacuum"><span data-translate="msstoolsApp.tableStat.lastVacuum">Last Vacuum</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastAutovacuum"><span data-translate="msstoolsApp.tableStat.lastAutovacuum">Last Autovacuum</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastAnalyze"><span data-translate="msstoolsApp.tableStat.lastAnalyze">Last Analyze</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastAutoanalyze"><span data-translate="msstoolsApp.tableStat.lastAutoanalyze">Last Autoanalyze</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="vacuumCount"><span data-translate="msstoolsApp.tableStat.vacuumCount">Vacuum Count</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="autovacuumCount"><span data-translate="msstoolsApp.tableStat.autovacuumCount">Autovacuum Count</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="analyzeCount"><span data-translate="msstoolsApp.tableStat.analyzeCount">Analyze Count</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="autoanalyzeCount"><span data-translate="msstoolsApp.tableStat.autoanalyzeCount">Autoanalyze Count</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="systemName"><span data-translate="msstoolsApp.tableStat.system">System</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tableStat in vm.tableStats track by tableStat.id">
+                    <td><a ui-sref="table-stat-detail({id:tableStat.id})">{{tableStat.id}}</a></td>
+                    <td>{{tableStat.schemaname}}</td>
+                    <td>{{tableStat.relname}}</td>
+                    <td>{{tableStat.seqScan}}</td>
+                    <td>{{tableStat.seqTupRead}}</td>
+                    <td>{{tableStat.idxScan}}</td>
+                    <td>{{tableStat.idxTupFetch}}</td>
+                    <td>{{tableStat.nTupIns}}</td>
+                    <td>{{tableStat.nTupUpd}}</td>
+                    <td>{{tableStat.nTupDel}}</td>
+                    <td>{{tableStat.nTupHotUpd}}</td>
+                    <td>{{tableStat.nLiveTup}}</td>
+                    <td>{{tableStat.nDeadTup}}</td>
+                    <td>{{tableStat.lastVacuum | date:'medium'}}</td>
+                    <td>{{tableStat.lastAutovacuum | date:'medium'}}</td>
+                    <td>{{tableStat.lastAnalyze | date:'medium'}}</td>
+                    <td>{{tableStat.lastAutoanalyze | date:'medium'}}</td>
+                    <td>{{tableStat.vacuumCount}}</td>
+                    <td>{{tableStat.autovacuumCount}}</td>
+                    <td>{{tableStat.analyzeCount}}</td>
+                    <td>{{tableStat.autoanalyzeCount}}</td>
+                    <td>
+                        <a ui-sref="system-detail({id:tableStat.systemId})">{{tableStat.systemName}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="table-stat-detail({id:tableStat.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="table-stat.edit({id:tableStat.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="table-stat.delete({id:tableStat.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

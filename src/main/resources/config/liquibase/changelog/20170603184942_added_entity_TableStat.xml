@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity TableStat.
+    -->
+    <changeSet id="20170603184942-1" author="jhipster">
+        <createTable tableName="table_stat">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="schemaname" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="relname" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="seq_scan" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="seq_tup_read" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="idx_scan" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="idx_tup_fetch" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="n_tup_ins" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="n_tup_upd" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="n_tup_del" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="n_tup_hot_upd" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="n_live_tup" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="n_dead_tup" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="last_vacuum" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="last_autovacuum" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="last_analyze" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="last_autoanalyze" type="timestamp">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="vacuum_count" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="autovacuum_count" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="analyze_count" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="autoanalyze_count" type="decimal(10,2)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="system_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        <dropDefaultValue tableName="table_stat" columnName="last_vacuum" columnDataType="datetime"/>
+        <dropDefaultValue tableName="table_stat" columnName="last_autovacuum" columnDataType="datetime"/>
+        <dropDefaultValue tableName="table_stat" columnName="last_analyze" columnDataType="datetime"/>
+        <dropDefaultValue tableName="table_stat" columnName="last_autoanalyze" columnDataType="datetime"/>
+        
+    </changeSet>
+</databaseChangeLog>
