@@ -1,9 +1,10 @@
 package hu.tsystems.msstools.service.mapper;
 
-import hu.tsystems.msstools.domain.*;
+import hu.tsystems.msstools.domain.System;
 import hu.tsystems.msstools.service.dto.SystemDTO;
 
 import org.mapstruct.*;
+import org.springframework.stereotype.Component;
 
 /**
  * Mapper for the entity System and its DTO SystemDTO.
