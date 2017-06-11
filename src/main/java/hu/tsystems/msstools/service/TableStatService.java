@@ -6,7 +6,6 @@ import hu.tsystems.msstools.service.dto.TableStatDTO;
 import hu.tsystems.msstools.service.mapper.TableStatMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,19 +25,10 @@ public class TableStatService {
     private final TableStatRepository tableStatRepository;
 
     private final TableStatMapper tableStatMapper;
-    
-    @Autowired
-    private TableStatProviderService tableStatProviderService;
 
     public TableStatService(TableStatRepository tableStatRepository, TableStatMapper tableStatMapper) {
         this.tableStatRepository = tableStatRepository;
         this.tableStatMapper = tableStatMapper;
-    }
-    
-    public void updateAll() throws Exception{
-    	for (TableStatDTO tableStatDTO : tableStatProviderService.getResult()) {
-			save(tableStatDTO);
-		}
     }
 
     /**

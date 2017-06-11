@@ -27,14 +27,16 @@
             "nTupHotUpd": "N Tup Hot Upd",
             "nLiveTup": "N Live Tup",
             "nDeadTup": "N Dead Tup",
-            "lastVacuum": "Last Vacuum",
-            "lastAutovacuum": "Last Autovacuum",
-            "lastAnalyze": "Last Analyze",
-            "lastAutoanalyze": "Last Autoanalyze",
             "vacuumCount": "Vacuum Count",
             "autovacuumCount": "Autovacuum Count",
             "analyzeCount": "Analyze Count",
             "autoanalyzeCount": "Autoanalyze Count",
+            "updateTime": "Update Time",
+            "updateNumber": "Update Number",
+            "lastVacuum": "Last Vacuum",
+            "lastAutovacuum": "Last Autovacuum",
+            "lastAnalyze": "Last Analyze",
+            "lastAutoanalyze": "Last Autoanalyze",
             "system": "System"
         }
     }

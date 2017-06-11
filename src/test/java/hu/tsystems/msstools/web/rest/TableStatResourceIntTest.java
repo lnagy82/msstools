@@ -25,13 +25,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.ZoneOffset;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.List;
 
-import static hu.tsystems.msstools.web.rest.TestUtil.sameInstant;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -82,18 +79,6 @@ public class TableStatResourceIntTest {
     private static final BigDecimal DEFAULT_N_DEAD_TUP = new BigDecimal(1);
     private static final BigDecimal UPDATED_N_DEAD_TUP = new BigDecimal(2);
 
-    private static final ZonedDateTime DEFAULT_LAST_VACUUM = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_LAST_VACUUM = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
-    private static final ZonedDateTime DEFAULT_LAST_AUTOVACUUM = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_LAST_AUTOVACUUM = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
-    private static final ZonedDateTime DEFAULT_LAST_ANALYZE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_LAST_ANALYZE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
-    private static final ZonedDateTime DEFAULT_LAST_AUTOANALYZE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_LAST_AUTOANALYZE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
     private static final BigDecimal DEFAULT_VACUUM_COUNT = new BigDecimal(1);
     private static final BigDecimal UPDATED_VACUUM_COUNT = new BigDecimal(2);
 
@@ -105,6 +90,24 @@ public class TableStatResourceIntTest {
 
     private static final BigDecimal DEFAULT_AUTOANALYZE_COUNT = new BigDecimal(1);
     private static final BigDecimal UPDATED_AUTOANALYZE_COUNT = new BigDecimal(2);
+
+    private static final LocalDate DEFAULT_UPDATE_TIME = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_UPDATE_TIME = LocalDate.now(ZoneId.systemDefault());
+
+    private static final Integer DEFAULT_UPDATE_NUMBER = 1;
+    private static final Integer UPDATED_UPDATE_NUMBER = 2;
+
+    private static final LocalDate DEFAULT_LAST_VACUUM = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_LAST_VACUUM = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_LAST_AUTOVACUUM = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_LAST_AUTOVACUUM = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_LAST_ANALYZE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_LAST_ANALYZE = LocalDate.now(ZoneId.systemDefault());
+
+    private static final LocalDate DEFAULT_LAST_AUTOANALYZE = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_LAST_AUTOANALYZE = LocalDate.now(ZoneId.systemDefault());
 
     @Autowired
     private TableStatRepository tableStatRepository;
@@ -161,14 +164,16 @@ public class TableStatResourceIntTest {
             .nTupHotUpd(DEFAULT_N_TUP_HOT_UPD)
             .nLiveTup(DEFAULT_N_LIVE_TUP)
             .nDeadTup(DEFAULT_N_DEAD_TUP)
-            .lastVacuum(DEFAULT_LAST_VACUUM)
-            .lastAutovacuum(DEFAULT_LAST_AUTOVACUUM)
-            .lastAnalyze(DEFAULT_LAST_ANALYZE)
-            .lastAutoanalyze(DEFAULT_LAST_AUTOANALYZE)
             .vacuumCount(DEFAULT_VACUUM_COUNT)
             .autovacuumCount(DEFAULT_AUTOVACUUM_COUNT)
             .analyzeCount(DEFAULT_ANALYZE_COUNT)
-            .autoanalyzeCount(DEFAULT_AUTOANALYZE_COUNT);
+            .autoanalyzeCount(DEFAULT_AUTOANALYZE_COUNT)
+            .updateTime(DEFAULT_UPDATE_TIME)
+            .updateNumber(DEFAULT_UPDATE_NUMBER)
+            .lastVacuum(DEFAULT_LAST_VACUUM)
+            .lastAutovacuum(DEFAULT_LAST_AUTOVACUUM)
+            .lastAnalyze(DEFAULT_LAST_ANALYZE)
+            .lastAutoanalyze(DEFAULT_LAST_AUTOANALYZE);
         return tableStat;
     }
 
@@ -205,14 +210,16 @@ public class TableStatResourceIntTest {
         assertThat(testTableStat.getnTupHotUpd()).isEqualTo(DEFAULT_N_TUP_HOT_UPD);
         assertThat(testTableStat.getnLiveTup()).isEqualTo(DEFAULT_N_LIVE_TUP);
         assertThat(testTableStat.getnDeadTup()).isEqualTo(DEFAULT_N_DEAD_TUP);
-        assertThat(testTableStat.getLastVacuum()).isEqualTo(DEFAULT_LAST_VACUUM);
-        assertThat(testTableStat.getLastAutovacuum()).isEqualTo(DEFAULT_LAST_AUTOVACUUM);
-        assertThat(testTableStat.getLastAnalyze()).isEqualTo(DEFAULT_LAST_ANALYZE);
-        assertThat(testTableStat.getLastAutoanalyze()).isEqualTo(DEFAULT_LAST_AUTOANALYZE);
         assertThat(testTableStat.getVacuumCount()).isEqualTo(DEFAULT_VACUUM_COUNT);
         assertThat(testTableStat.getAutovacuumCount()).isEqualTo(DEFAULT_AUTOVACUUM_COUNT);
         assertThat(testTableStat.getAnalyzeCount()).isEqualTo(DEFAULT_ANALYZE_COUNT);
         assertThat(testTableStat.getAutoanalyzeCount()).isEqualTo(DEFAULT_AUTOANALYZE_COUNT);
+        assertThat(testTableStat.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
+        assertThat(testTableStat.getUpdateNumber()).isEqualTo(DEFAULT_UPDATE_NUMBER);
+        assertThat(testTableStat.getLastVacuum()).isEqualTo(DEFAULT_LAST_VACUUM);
+        assertThat(testTableStat.getLastAutovacuum()).isEqualTo(DEFAULT_LAST_AUTOVACUUM);
+        assertThat(testTableStat.getLastAnalyze()).isEqualTo(DEFAULT_LAST_ANALYZE);
+        assertThat(testTableStat.getLastAutoanalyze()).isEqualTo(DEFAULT_LAST_AUTOANALYZE);
     }
 
     @Test
@@ -258,14 +265,16 @@ public class TableStatResourceIntTest {
             .andExpect(jsonPath("$.[*].nTupHotUpd").value(hasItem(DEFAULT_N_TUP_HOT_UPD.intValue())))
             .andExpect(jsonPath("$.[*].nLiveTup").value(hasItem(DEFAULT_N_LIVE_TUP.intValue())))
             .andExpect(jsonPath("$.[*].nDeadTup").value(hasItem(DEFAULT_N_DEAD_TUP.intValue())))
-            .andExpect(jsonPath("$.[*].lastVacuum").value(hasItem(sameInstant(DEFAULT_LAST_VACUUM))))
-            .andExpect(jsonPath("$.[*].lastAutovacuum").value(hasItem(sameInstant(DEFAULT_LAST_AUTOVACUUM))))
-            .andExpect(jsonPath("$.[*].lastAnalyze").value(hasItem(sameInstant(DEFAULT_LAST_ANALYZE))))
-            .andExpect(jsonPath("$.[*].lastAutoanalyze").value(hasItem(sameInstant(DEFAULT_LAST_AUTOANALYZE))))
             .andExpect(jsonPath("$.[*].vacuumCount").value(hasItem(DEFAULT_VACUUM_COUNT.intValue())))
             .andExpect(jsonPath("$.[*].autovacuumCount").value(hasItem(DEFAULT_AUTOVACUUM_COUNT.intValue())))
             .andExpect(jsonPath("$.[*].analyzeCount").value(hasItem(DEFAULT_ANALYZE_COUNT.intValue())))
-            .andExpect(jsonPath("$.[*].autoanalyzeCount").value(hasItem(DEFAULT_AUTOANALYZE_COUNT.intValue())));
+            .andExpect(jsonPath("$.[*].autoanalyzeCount").value(hasItem(DEFAULT_AUTOANALYZE_COUNT.intValue())))
+            .andExpect(jsonPath("$.[*].updateTime").value(hasItem(DEFAULT_UPDATE_TIME.toString())))
+            .andExpect(jsonPath("$.[*].updateNumber").value(hasItem(DEFAULT_UPDATE_NUMBER)))
+            .andExpect(jsonPath("$.[*].lastVacuum").value(hasItem(DEFAULT_LAST_VACUUM.toString())))
+            .andExpect(jsonPath("$.[*].lastAutovacuum").value(hasItem(DEFAULT_LAST_AUTOVACUUM.toString())))
+            .andExpect(jsonPath("$.[*].lastAnalyze").value(hasItem(DEFAULT_LAST_ANALYZE.toString())))
+            .andExpect(jsonPath("$.[*].lastAutoanalyze").value(hasItem(DEFAULT_LAST_AUTOANALYZE.toString())));
     }
 
     @Test
@@ -291,14 +300,16 @@ public class TableStatResourceIntTest {
             .andExpect(jsonPath("$.nTupHotUpd").value(DEFAULT_N_TUP_HOT_UPD.intValue()))
             .andExpect(jsonPath("$.nLiveTup").value(DEFAULT_N_LIVE_TUP.intValue()))
             .andExpect(jsonPath("$.nDeadTup").value(DEFAULT_N_DEAD_TUP.intValue()))
-            .andExpect(jsonPath("$.lastVacuum").value(sameInstant(DEFAULT_LAST_VACUUM)))
-            .andExpect(jsonPath("$.lastAutovacuum").value(sameInstant(DEFAULT_LAST_AUTOVACUUM)))
-            .andExpect(jsonPath("$.lastAnalyze").value(sameInstant(DEFAULT_LAST_ANALYZE)))
-            .andExpect(jsonPath("$.lastAutoanalyze").value(sameInstant(DEFAULT_LAST_AUTOANALYZE)))
             .andExpect(jsonPath("$.vacuumCount").value(DEFAULT_VACUUM_COUNT.intValue()))
             .andExpect(jsonPath("$.autovacuumCount").value(DEFAULT_AUTOVACUUM_COUNT.intValue()))
             .andExpect(jsonPath("$.analyzeCount").value(DEFAULT_ANALYZE_COUNT.intValue()))
-            .andExpect(jsonPath("$.autoanalyzeCount").value(DEFAULT_AUTOANALYZE_COUNT.intValue()));
+            .andExpect(jsonPath("$.autoanalyzeCount").value(DEFAULT_AUTOANALYZE_COUNT.intValue()))
+            .andExpect(jsonPath("$.updateTime").value(DEFAULT_UPDATE_TIME.toString()))
+            .andExpect(jsonPath("$.updateNumber").value(DEFAULT_UPDATE_NUMBER))
+            .andExpect(jsonPath("$.lastVacuum").value(DEFAULT_LAST_VACUUM.toString()))
+            .andExpect(jsonPath("$.lastAutovacuum").value(DEFAULT_LAST_AUTOVACUUM.toString()))
+            .andExpect(jsonPath("$.lastAnalyze").value(DEFAULT_LAST_ANALYZE.toString()))
+            .andExpect(jsonPath("$.lastAutoanalyze").value(DEFAULT_LAST_AUTOANALYZE.toString()));
     }
 
     @Test
@@ -331,14 +342,16 @@ public class TableStatResourceIntTest {
             .nTupHotUpd(UPDATED_N_TUP_HOT_UPD)
             .nLiveTup(UPDATED_N_LIVE_TUP)
             .nDeadTup(UPDATED_N_DEAD_TUP)
-            .lastVacuum(UPDATED_LAST_VACUUM)
-            .lastAutovacuum(UPDATED_LAST_AUTOVACUUM)
-            .lastAnalyze(UPDATED_LAST_ANALYZE)
-            .lastAutoanalyze(UPDATED_LAST_AUTOANALYZE)
             .vacuumCount(UPDATED_VACUUM_COUNT)
             .autovacuumCount(UPDATED_AUTOVACUUM_COUNT)
             .analyzeCount(UPDATED_ANALYZE_COUNT)
-            .autoanalyzeCount(UPDATED_AUTOANALYZE_COUNT);
+            .autoanalyzeCount(UPDATED_AUTOANALYZE_COUNT)
+            .updateTime(UPDATED_UPDATE_TIME)
+            .updateNumber(UPDATED_UPDATE_NUMBER)
+            .lastVacuum(UPDATED_LAST_VACUUM)
+            .lastAutovacuum(UPDATED_LAST_AUTOVACUUM)
+            .lastAnalyze(UPDATED_LAST_ANALYZE)
+            .lastAutoanalyze(UPDATED_LAST_AUTOANALYZE);
         TableStatDTO tableStatDTO = tableStatMapper.toDto(updatedTableStat);
 
         restTableStatMockMvc.perform(put("/api/table-stats")
@@ -362,14 +375,16 @@ public class TableStatResourceIntTest {
         assertThat(testTableStat.getnTupHotUpd()).isEqualTo(UPDATED_N_TUP_HOT_UPD);
         assertThat(testTableStat.getnLiveTup()).isEqualTo(UPDATED_N_LIVE_TUP);
         assertThat(testTableStat.getnDeadTup()).isEqualTo(UPDATED_N_DEAD_TUP);
-        assertThat(testTableStat.getLastVacuum()).isEqualTo(UPDATED_LAST_VACUUM);
-        assertThat(testTableStat.getLastAutovacuum()).isEqualTo(UPDATED_LAST_AUTOVACUUM);
-        assertThat(testTableStat.getLastAnalyze()).isEqualTo(UPDATED_LAST_ANALYZE);
-        assertThat(testTableStat.getLastAutoanalyze()).isEqualTo(UPDATED_LAST_AUTOANALYZE);
         assertThat(testTableStat.getVacuumCount()).isEqualTo(UPDATED_VACUUM_COUNT);
         assertThat(testTableStat.getAutovacuumCount()).isEqualTo(UPDATED_AUTOVACUUM_COUNT);
         assertThat(testTableStat.getAnalyzeCount()).isEqualTo(UPDATED_ANALYZE_COUNT);
         assertThat(testTableStat.getAutoanalyzeCount()).isEqualTo(UPDATED_AUTOANALYZE_COUNT);
+        assertThat(testTableStat.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
+        assertThat(testTableStat.getUpdateNumber()).isEqualTo(UPDATED_UPDATE_NUMBER);
+        assertThat(testTableStat.getLastVacuum()).isEqualTo(UPDATED_LAST_VACUUM);
+        assertThat(testTableStat.getLastAutovacuum()).isEqualTo(UPDATED_LAST_AUTOVACUUM);
+        assertThat(testTableStat.getLastAnalyze()).isEqualTo(UPDATED_LAST_ANALYZE);
+        assertThat(testTableStat.getLastAutoanalyze()).isEqualTo(UPDATED_LAST_AUTOANALYZE);
     }
 
     @Test

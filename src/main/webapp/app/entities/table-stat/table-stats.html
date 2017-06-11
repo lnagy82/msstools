@@ -31,14 +31,16 @@
                     <th jh-sort-by="nTupHotUpd"><span data-translate="msstoolsApp.tableStat.nTupHotUpd">N Tup Hot Upd</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="nLiveTup"><span data-translate="msstoolsApp.tableStat.nLiveTup">N Live Tup</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="nDeadTup"><span data-translate="msstoolsApp.tableStat.nDeadTup">N Dead Tup</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastVacuum"><span data-translate="msstoolsApp.tableStat.lastVacuum">Last Vacuum</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastAutovacuum"><span data-translate="msstoolsApp.tableStat.lastAutovacuum">Last Autovacuum</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastAnalyze"><span data-translate="msstoolsApp.tableStat.lastAnalyze">Last Analyze</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="lastAutoanalyze"><span data-translate="msstoolsApp.tableStat.lastAutoanalyze">Last Autoanalyze</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="vacuumCount"><span data-translate="msstoolsApp.tableStat.vacuumCount">Vacuum Count</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="autovacuumCount"><span data-translate="msstoolsApp.tableStat.autovacuumCount">Autovacuum Count</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="analyzeCount"><span data-translate="msstoolsApp.tableStat.analyzeCount">Analyze Count</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="autoanalyzeCount"><span data-translate="msstoolsApp.tableStat.autoanalyzeCount">Autoanalyze Count</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="updateTime"><span data-translate="msstoolsApp.tableStat.updateTime">Update Time</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="updateNumber"><span data-translate="msstoolsApp.tableStat.updateNumber">Update Number</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastVacuum"><span data-translate="msstoolsApp.tableStat.lastVacuum">Last Vacuum</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastAutovacuum"><span data-translate="msstoolsApp.tableStat.lastAutovacuum">Last Autovacuum</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastAnalyze"><span data-translate="msstoolsApp.tableStat.lastAnalyze">Last Analyze</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="lastAutoanalyze"><span data-translate="msstoolsApp.tableStat.lastAutoanalyze">Last Autoanalyze</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="systemName"><span data-translate="msstoolsApp.tableStat.system">System</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
@@ -58,14 +60,16 @@
                     <td>{{tableStat.nTupHotUpd}}</td>
                     <td>{{tableStat.nLiveTup}}</td>
                     <td>{{tableStat.nDeadTup}}</td>
-                    <td>{{tableStat.lastVacuum | date:'medium'}}</td>
-                    <td>{{tableStat.lastAutovacuum | date:'medium'}}</td>
-                    <td>{{tableStat.lastAnalyze | date:'medium'}}</td>
-                    <td>{{tableStat.lastAutoanalyze | date:'medium'}}</td>
                     <td>{{tableStat.vacuumCount}}</td>
                     <td>{{tableStat.autovacuumCount}}</td>
                     <td>{{tableStat.analyzeCount}}</td>
                     <td>{{tableStat.autoanalyzeCount}}</td>
+                        <td>{{tableStat.updateTime | date:'mediumDate'}}</td>
+                    <td>{{tableStat.updateNumber}}</td>
+                        <td>{{tableStat.lastVacuum | date:'mediumDate'}}</td>
+                        <td>{{tableStat.lastAutovacuum | date:'mediumDate'}}</td>
+                        <td>{{tableStat.lastAnalyze | date:'mediumDate'}}</td>
+                        <td>{{tableStat.lastAutoanalyze | date:'mediumDate'}}</td>
                     <td>
                         <a ui-sref="system-detail({id:tableStat.systemId})">{{tableStat.systemName}}</a>
                     </td>

@@ -1,7 +1,7 @@
 package hu.tsystems.msstools.service.dto;
 
 
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.HashSet;
@@ -39,14 +39,6 @@ public class TableStatDTO implements Serializable {
 
     private BigDecimal nDeadTup;
 
-    private ZonedDateTime lastVacuum;
-
-    private ZonedDateTime lastAutovacuum;
-
-    private ZonedDateTime lastAnalyze;
-
-    private ZonedDateTime lastAutoanalyze;
-
     private BigDecimal vacuumCount;
 
     private BigDecimal autovacuumCount;
@@ -54,6 +46,18 @@ public class TableStatDTO implements Serializable {
     private BigDecimal analyzeCount;
 
     private BigDecimal autoanalyzeCount;
+
+    private LocalDate updateTime;
+
+    private Integer updateNumber;
+
+    private LocalDate lastVacuum;
+
+    private LocalDate lastAutovacuum;
+
+    private LocalDate lastAnalyze;
+
+    private LocalDate lastAutoanalyze;
 
     private Long systemId;
 
@@ -163,38 +167,6 @@ public class TableStatDTO implements Serializable {
         this.nDeadTup = nDeadTup;
     }
 
-    public ZonedDateTime getLastVacuum() {
-        return lastVacuum;
-    }
-
-    public void setLastVacuum(ZonedDateTime lastVacuum) {
-        this.lastVacuum = lastVacuum;
-    }
-
-    public ZonedDateTime getLastAutovacuum() {
-        return lastAutovacuum;
-    }
-
-    public void setLastAutovacuum(ZonedDateTime lastAutovacuum) {
-        this.lastAutovacuum = lastAutovacuum;
-    }
-
-    public ZonedDateTime getLastAnalyze() {
-        return lastAnalyze;
-    }
-
-    public void setLastAnalyze(ZonedDateTime lastAnalyze) {
-        this.lastAnalyze = lastAnalyze;
-    }
-
-    public ZonedDateTime getLastAutoanalyze() {
-        return lastAutoanalyze;
-    }
-
-    public void setLastAutoanalyze(ZonedDateTime lastAutoanalyze) {
-        this.lastAutoanalyze = lastAutoanalyze;
-    }
-
     public BigDecimal getVacuumCount() {
         return vacuumCount;
     }
@@ -225,6 +197,54 @@ public class TableStatDTO implements Serializable {
 
     public void setAutoanalyzeCount(BigDecimal autoanalyzeCount) {
         this.autoanalyzeCount = autoanalyzeCount;
+    }
+
+    public LocalDate getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(LocalDate updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Integer getUpdateNumber() {
+        return updateNumber;
+    }
+
+    public void setUpdateNumber(Integer updateNumber) {
+        this.updateNumber = updateNumber;
+    }
+
+    public LocalDate getLastVacuum() {
+        return lastVacuum;
+    }
+
+    public void setLastVacuum(LocalDate lastVacuum) {
+        this.lastVacuum = lastVacuum;
+    }
+
+    public LocalDate getLastAutovacuum() {
+        return lastAutovacuum;
+    }
+
+    public void setLastAutovacuum(LocalDate lastAutovacuum) {
+        this.lastAutovacuum = lastAutovacuum;
+    }
+
+    public LocalDate getLastAnalyze() {
+        return lastAnalyze;
+    }
+
+    public void setLastAnalyze(LocalDate lastAnalyze) {
+        this.lastAnalyze = lastAnalyze;
+    }
+
+    public LocalDate getLastAutoanalyze() {
+        return lastAutoanalyze;
+    }
+
+    public void setLastAutoanalyze(LocalDate lastAutoanalyze) {
+        this.lastAutoanalyze = lastAutoanalyze;
     }
 
     public Long getSystemId() {
@@ -274,20 +294,22 @@ public class TableStatDTO implements Serializable {
             ", seqTupRead='" + getSeqTupRead() + "'" +
             ", idxScan='" + getIdxScan() + "'" +
             ", idxTupFetch='" + getIdxTupFetch() + "'" +
-            ", nTupIns='" + getnTupIns() + "'" +
-            ", nTupUpd='" + getnTupUpd() + "'" +
-            ", nTupDel='" + getnTupDel() + "'" +
-            ", nTupHotUpd='" + getnTupHotUpd() + "'" +
-            ", nLiveTup='" + getnLiveTup() + "'" +
-            ", nDeadTup='" + getnDeadTup() + "'" +
-            ", lastVacuum='" + getLastVacuum() + "'" +
-            ", lastAutovacuum='" + getLastAutovacuum() + "'" +
-            ", lastAnalyze='" + getLastAnalyze() + "'" +
-            ", lastAutoanalyze='" + getLastAutoanalyze() + "'" +
+            ", nTupIns='" + getNTupIns() + "'" +
+            ", nTupUpd='" + getNTupUpd() + "'" +
+            ", nTupDel='" + getNTupDel() + "'" +
+            ", nTupHotUpd='" + getNTupHotUpd() + "'" +
+            ", nLiveTup='" + getNLiveTup() + "'" +
+            ", nDeadTup='" + getNDeadTup() + "'" +
             ", vacuumCount='" + getVacuumCount() + "'" +
             ", autovacuumCount='" + getAutovacuumCount() + "'" +
             ", analyzeCount='" + getAnalyzeCount() + "'" +
             ", autoanalyzeCount='" + getAutoanalyzeCount() + "'" +
+            ", updateTime='" + getUpdateTime() + "'" +
+            ", updateNumber='" + getUpdateNumber() + "'" +
+            ", lastVacuum='" + getLastVacuum() + "'" +
+            ", lastAutovacuum='" + getLastAutovacuum() + "'" +
+            ", lastAnalyze='" + getLastAnalyze() + "'" +
+            ", lastAutoanalyze='" + getLastAutoanalyze() + "'" +
             "}";
     }
 }

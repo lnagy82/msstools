@@ -29,75 +29,83 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="seq_scan" type="decimal(20,2)">
+            <column name="seq_scan" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="seq_tup_read" type="decimal(20,2)">
+            <column name="seq_tup_read" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="idx_scan" type="decimal(20,2)">
+            <column name="idx_scan" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="idx_tup_fetch" type="decimal(20,2)">
+            <column name="idx_tup_fetch" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="n_tup_ins" type="decimal(20,2)">
+            <column name="n_tup_ins" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="n_tup_upd" type="decimal(20,2)">
+            <column name="n_tup_upd" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="n_tup_del" type="decimal(20,2)">
+            <column name="n_tup_del" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="n_tup_hot_upd" type="decimal(20,2)">
+            <column name="n_tup_hot_upd" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="n_live_tup" type="decimal(20,2)">
+            <column name="n_live_tup" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="n_dead_tup" type="decimal(20,2)">
+            <column name="n_dead_tup" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="last_vacuum" type="timestamp">
+            <column name="vacuum_count" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="last_autovacuum" type="timestamp">
+            <column name="autovacuum_count" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="last_analyze" type="timestamp">
+            <column name="analyze_count" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="last_autoanalyze" type="timestamp">
+            <column name="autoanalyze_count" type="decimal(10,2)">
                 <constraints nullable="true" />
             </column>
 
-            <column name="vacuum_count" type="decimal(20,2)">
+            <column name="update_time" type="date">
                 <constraints nullable="true" />
             </column>
 
-            <column name="autovacuum_count" type="decimal(20,2)">
+            <column name="update_number" type="integer">
                 <constraints nullable="true" />
             </column>
 
-            <column name="analyze_count" type="decimal(20,2)">
+            <column name="last_vacuum" type="date">
                 <constraints nullable="true" />
             </column>
 
-            <column name="autoanalyze_count" type="decimal(20,2)">
+            <column name="last_autovacuum" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="last_analyze" type="date">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="last_autoanalyze" type="date">
                 <constraints nullable="true" />
             </column>
 
@@ -107,10 +115,6 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="table_stat" columnName="last_vacuum" columnDataType="datetime"/>
-        <dropDefaultValue tableName="table_stat" columnName="last_autovacuum" columnDataType="datetime"/>
-        <dropDefaultValue tableName="table_stat" columnName="last_analyze" columnDataType="datetime"/>
-        <dropDefaultValue tableName="table_stat" columnName="last_autoanalyze" columnDataType="datetime"/>
         
     </changeSet>
 </databaseChangeLog>

@@ -67,7 +67,7 @@ class TableStatGatlingTest extends Simulation {
             .exec(http("Create new tableStat")
             .post("/api/table-stats")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "schemaname":"SAMPLE_TEXT", "relname":"SAMPLE_TEXT", "seqScan":null, "seqTupRead":null, "idxScan":null, "idxTupFetch":null, "nTupIns":null, "nTupUpd":null, "nTupDel":null, "nTupHotUpd":null, "nLiveTup":null, "nDeadTup":null, "lastVacuum":"2020-01-01T00:00:00.000Z", "lastAutovacuum":"2020-01-01T00:00:00.000Z", "lastAnalyze":"2020-01-01T00:00:00.000Z", "lastAutoanalyze":"2020-01-01T00:00:00.000Z", "vacuumCount":null, "autovacuumCount":null, "analyzeCount":null, "autoanalyzeCount":null}""")).asJSON
+            .body(StringBody("""{"id":null, "schemaname":"SAMPLE_TEXT", "relname":"SAMPLE_TEXT", "seqScan":null, "seqTupRead":null, "idxScan":null, "idxTupFetch":null, "nTupIns":null, "nTupUpd":null, "nTupDel":null, "nTupHotUpd":null, "nLiveTup":null, "nDeadTup":null, "vacuumCount":null, "autovacuumCount":null, "analyzeCount":null, "autoanalyzeCount":null, "updateTime":"2020-01-01T00:00:00.000Z", "updateNumber":"0", "lastVacuum":"2020-01-01T00:00:00.000Z", "lastAutovacuum":"2020-01-01T00:00:00.000Z", "lastAnalyze":"2020-01-01T00:00:00.000Z", "lastAutoanalyze":"2020-01-01T00:00:00.000Z"}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_tableStat_url"))).exitHereIfFailed
             .pause(10)

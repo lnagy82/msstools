@@ -6,7 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.ZonedDateTime;
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
@@ -60,18 +60,6 @@ public class TableStat implements Serializable {
     @Column(name = "n_dead_tup", precision=10, scale=2)
     private BigDecimal nDeadTup;
 
-    @Column(name = "last_vacuum")
-    private ZonedDateTime lastVacuum;
-
-    @Column(name = "last_autovacuum")
-    private ZonedDateTime lastAutovacuum;
-
-    @Column(name = "last_analyze")
-    private ZonedDateTime lastAnalyze;
-
-    @Column(name = "last_autoanalyze")
-    private ZonedDateTime lastAutoanalyze;
-
     @Column(name = "vacuum_count", precision=10, scale=2)
     private BigDecimal vacuumCount;
 
@@ -83,6 +71,24 @@ public class TableStat implements Serializable {
 
     @Column(name = "autoanalyze_count", precision=10, scale=2)
     private BigDecimal autoanalyzeCount;
+
+    @Column(name = "update_time")
+    private LocalDate updateTime;
+
+    @Column(name = "update_number")
+    private Integer updateNumber;
+
+    @Column(name = "last_vacuum")
+    private LocalDate lastVacuum;
+
+    @Column(name = "last_autovacuum")
+    private LocalDate lastAutovacuum;
+
+    @Column(name = "last_analyze")
+    private LocalDate lastAnalyze;
+
+    @Column(name = "last_autoanalyze")
+    private LocalDate lastAutoanalyze;
 
     @ManyToOne
     private System system;
@@ -251,58 +257,6 @@ public class TableStat implements Serializable {
         this.nDeadTup = nDeadTup;
     }
 
-    public ZonedDateTime getLastVacuum() {
-        return lastVacuum;
-    }
-
-    public TableStat lastVacuum(ZonedDateTime lastVacuum) {
-        this.lastVacuum = lastVacuum;
-        return this;
-    }
-
-    public void setLastVacuum(ZonedDateTime lastVacuum) {
-        this.lastVacuum = lastVacuum;
-    }
-
-    public ZonedDateTime getLastAutovacuum() {
-        return lastAutovacuum;
-    }
-
-    public TableStat lastAutovacuum(ZonedDateTime lastAutovacuum) {
-        this.lastAutovacuum = lastAutovacuum;
-        return this;
-    }
-
-    public void setLastAutovacuum(ZonedDateTime lastAutovacuum) {
-        this.lastAutovacuum = lastAutovacuum;
-    }
-
-    public ZonedDateTime getLastAnalyze() {
-        return lastAnalyze;
-    }
-
-    public TableStat lastAnalyze(ZonedDateTime lastAnalyze) {
-        this.lastAnalyze = lastAnalyze;
-        return this;
-    }
-
-    public void setLastAnalyze(ZonedDateTime lastAnalyze) {
-        this.lastAnalyze = lastAnalyze;
-    }
-
-    public ZonedDateTime getLastAutoanalyze() {
-        return lastAutoanalyze;
-    }
-
-    public TableStat lastAutoanalyze(ZonedDateTime lastAutoanalyze) {
-        this.lastAutoanalyze = lastAutoanalyze;
-        return this;
-    }
-
-    public void setLastAutoanalyze(ZonedDateTime lastAutoanalyze) {
-        this.lastAutoanalyze = lastAutoanalyze;
-    }
-
     public BigDecimal getVacuumCount() {
         return vacuumCount;
     }
@@ -355,6 +309,84 @@ public class TableStat implements Serializable {
         this.autoanalyzeCount = autoanalyzeCount;
     }
 
+    public LocalDate getUpdateTime() {
+        return updateTime;
+    }
+
+    public TableStat updateTime(LocalDate updateTime) {
+        this.updateTime = updateTime;
+        return this;
+    }
+
+    public void setUpdateTime(LocalDate updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public Integer getUpdateNumber() {
+        return updateNumber;
+    }
+
+    public TableStat updateNumber(Integer updateNumber) {
+        this.updateNumber = updateNumber;
+        return this;
+    }
+
+    public void setUpdateNumber(Integer updateNumber) {
+        this.updateNumber = updateNumber;
+    }
+
+    public LocalDate getLastVacuum() {
+        return lastVacuum;
+    }
+
+    public TableStat lastVacuum(LocalDate lastVacuum) {
+        this.lastVacuum = lastVacuum;
+        return this;
+    }
+
+    public void setLastVacuum(LocalDate lastVacuum) {
+        this.lastVacuum = lastVacuum;
+    }
+
+    public LocalDate getLastAutovacuum() {
+        return lastAutovacuum;
+    }
+
+    public TableStat lastAutovacuum(LocalDate lastAutovacuum) {
+        this.lastAutovacuum = lastAutovacuum;
+        return this;
+    }
+
+    public void setLastAutovacuum(LocalDate lastAutovacuum) {
+        this.lastAutovacuum = lastAutovacuum;
+    }
+
+    public LocalDate getLastAnalyze() {
+        return lastAnalyze;
+    }
+
+    public TableStat lastAnalyze(LocalDate lastAnalyze) {
+        this.lastAnalyze = lastAnalyze;
+        return this;
+    }
+
+    public void setLastAnalyze(LocalDate lastAnalyze) {
+        this.lastAnalyze = lastAnalyze;
+    }
+
+    public LocalDate getLastAutoanalyze() {
+        return lastAutoanalyze;
+    }
+
+    public TableStat lastAutoanalyze(LocalDate lastAutoanalyze) {
+        this.lastAutoanalyze = lastAutoanalyze;
+        return this;
+    }
+
+    public void setLastAutoanalyze(LocalDate lastAutoanalyze) {
+        this.lastAutoanalyze = lastAutoanalyze;
+    }
+
     public System getSystem() {
         return system;
     }
@@ -398,20 +430,22 @@ public class TableStat implements Serializable {
             ", seqTupRead='" + getSeqTupRead() + "'" +
             ", idxScan='" + getIdxScan() + "'" +
             ", idxTupFetch='" + getIdxTupFetch() + "'" +
-            ", nTupIns='" + getnTupIns() + "'" +
-            ", nTupUpd='" + getnTupUpd() + "'" +
-            ", nTupDel='" + getnTupDel() + "'" +
-            ", nTupHotUpd='" + getnTupHotUpd() + "'" +
-            ", nLiveTup='" + getnLiveTup() + "'" +
-            ", nDeadTup='" + getnDeadTup() + "'" +
-            ", lastVacuum='" + getLastVacuum() + "'" +
-            ", lastAutovacuum='" + getLastAutovacuum() + "'" +
-            ", lastAnalyze='" + getLastAnalyze() + "'" +
-            ", lastAutoanalyze='" + getLastAutoanalyze() + "'" +
+            ", nTupIns='" + getNTupIns() + "'" +
+            ", nTupUpd='" + getNTupUpd() + "'" +
+            ", nTupDel='" + getNTupDel() + "'" +
+            ", nTupHotUpd='" + getNTupHotUpd() + "'" +
+            ", nLiveTup='" + getNLiveTup() + "'" +
+            ", nDeadTup='" + getNDeadTup() + "'" +
             ", vacuumCount='" + getVacuumCount() + "'" +
             ", autovacuumCount='" + getAutovacuumCount() + "'" +
             ", analyzeCount='" + getAnalyzeCount() + "'" +
             ", autoanalyzeCount='" + getAutoanalyzeCount() + "'" +
+            ", updateTime='" + getUpdateTime() + "'" +
+            ", updateNumber='" + getUpdateNumber() + "'" +
+            ", lastVacuum='" + getLastVacuum() + "'" +
+            ", lastAutovacuum='" + getLastAutovacuum() + "'" +
+            ", lastAnalyze='" + getLastAnalyze() + "'" +
+            ", lastAutoanalyze='" + getLastAutoanalyze() + "'" +
             "}";
     }
 }

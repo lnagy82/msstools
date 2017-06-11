@@ -44,6 +44,7 @@
             vm.isSaving = false;
         }
 
+        vm.datePickerOpenStatus.updateTime = false;
         vm.datePickerOpenStatus.lastVacuum = false;
         vm.datePickerOpenStatus.lastAutovacuum = false;
         vm.datePickerOpenStatus.lastAnalyze = false;

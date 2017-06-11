@@ -52,22 +52,6 @@
         <dd>
             <span>{{vm.tableStat.nDeadTup}}</span>
         </dd>
-        <dt><span data-translate="msstoolsApp.tableStat.lastVacuum">Last Vacuum</span></dt>
-        <dd>
-            <span>{{vm.tableStat.lastVacuum | date:'medium'}}</span>
-        </dd>
-        <dt><span data-translate="msstoolsApp.tableStat.lastAutovacuum">Last Autovacuum</span></dt>
-        <dd>
-            <span>{{vm.tableStat.lastAutovacuum | date:'medium'}}</span>
-        </dd>
-        <dt><span data-translate="msstoolsApp.tableStat.lastAnalyze">Last Analyze</span></dt>
-        <dd>
-            <span>{{vm.tableStat.lastAnalyze | date:'medium'}}</span>
-        </dd>
-        <dt><span data-translate="msstoolsApp.tableStat.lastAutoanalyze">Last Autoanalyze</span></dt>
-        <dd>
-            <span>{{vm.tableStat.lastAutoanalyze | date:'medium'}}</span>
-        </dd>
         <dt><span data-translate="msstoolsApp.tableStat.vacuumCount">Vacuum Count</span></dt>
         <dd>
             <span>{{vm.tableStat.vacuumCount}}</span>
@@ -83,6 +67,30 @@
         <dt><span data-translate="msstoolsApp.tableStat.autoanalyzeCount">Autoanalyze Count</span></dt>
         <dd>
             <span>{{vm.tableStat.autoanalyzeCount}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.updateTime">Update Time</span></dt>
+        <dd>
+            <span>{{vm.tableStat.updateTime | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.updateNumber">Update Number</span></dt>
+        <dd>
+            <span>{{vm.tableStat.updateNumber}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.lastVacuum">Last Vacuum</span></dt>
+        <dd>
+            <span>{{vm.tableStat.lastVacuum | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.lastAutovacuum">Last Autovacuum</span></dt>
+        <dd>
+            <span>{{vm.tableStat.lastAutovacuum | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.lastAnalyze">Last Analyze</span></dt>
+        <dd>
+            <span>{{vm.tableStat.lastAnalyze | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="msstoolsApp.tableStat.lastAutoanalyze">Last Autoanalyze</span></dt>
+        <dd>
+            <span>{{vm.tableStat.lastAutoanalyze | date:'mediumDate'}}</span>
         </dd>
         <dt><span data-translate="msstoolsApp.tableStat.system">System</span></dt>
         <dd>

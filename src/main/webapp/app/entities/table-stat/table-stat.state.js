@@ -136,14 +136,16 @@
                                 nTupHotUpd: null,
                                 nLiveTup: null,
                                 nDeadTup: null,
-                                lastVacuum: null,
-                                lastAutovacuum: null,
-                                lastAnalyze: null,
-                                lastAutoanalyze: null,
                                 vacuumCount: null,
                                 autovacuumCount: null,
                                 analyzeCount: null,
                                 autoanalyzeCount: null,
+                                updateTime: null,
+                                updateNumber: null,
+                                lastVacuum: null,
+                                lastAutovacuum: null,
+                                lastAnalyze: null,
+                                lastAutoanalyze: null,
                                 id: null
                             };
                         }
