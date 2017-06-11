@@ -14,7 +14,7 @@ import java.util.Objects;
 @Entity
 @Table(name = "system")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class System implements Serializable {
+public class SystemApp implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -47,7 +47,7 @@ public class System implements Serializable {
         return name;
     }
 
-    public System name(String name) {
+    public SystemApp name(String name) {
         this.name = name;
         return this;
     }
@@ -60,7 +60,7 @@ public class System implements Serializable {
         return ip;
     }
 
-    public System ip(String ip) {
+    public SystemApp ip(String ip) {
         this.ip = ip;
         return this;
     }
@@ -73,7 +73,7 @@ public class System implements Serializable {
         return port;
     }
 
-    public System port(Integer port) {
+    public SystemApp port(Integer port) {
         this.port = port;
         return this;
     }
@@ -90,7 +90,7 @@ public class System implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        System system = (System) o;
+        SystemApp system = (SystemApp) o;
         if (system.getId() == null || getId() == null) {
             return false;
         }

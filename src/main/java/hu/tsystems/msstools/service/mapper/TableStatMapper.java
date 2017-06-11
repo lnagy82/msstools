@@ -8,7 +8,7 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity TableStat and its DTO TableStatDTO.
  */
-@Mapper(componentModel = "spring", uses = {SystemMapper.class, })
+@Mapper(componentModel = "spring", uses = {SystemAppMapper.class, })
 public interface TableStatMapper extends EntityMapper <TableStatDTO, TableStat> {
     @Mapping(source = "system.id", target = "systemId")
     @Mapping(source = "system.name", target = "systemName")

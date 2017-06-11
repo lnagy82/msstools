@@ -4,7 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 import hu.tsystems.msstools.service.SystemService;
 import hu.tsystems.msstools.web.rest.util.HeaderUtil;
 import hu.tsystems.msstools.web.rest.util.PaginationUtil;
-import hu.tsystems.msstools.service.dto.SystemDTO;
+import hu.tsystems.msstools.service.dto.SystemAppDTO;
 import io.swagger.annotations.ApiParam;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
@@ -28,15 +28,15 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/api")
-public class SystemResource {
+public class SystemAppResource {
 
-    private final Logger log = LoggerFactory.getLogger(SystemResource.class);
+    private final Logger log = LoggerFactory.getLogger(SystemAppResource.class);
 
     private static final String ENTITY_NAME = "system";
         
     private final SystemService systemService;
 
-    public SystemResource(SystemService systemService) {
+    public SystemAppResource(SystemService systemService) {
         this.systemService = systemService;
     }
 
@@ -49,12 +49,12 @@ public class SystemResource {
      */
     @PostMapping("/systems")
     @Timed
-    public ResponseEntity<SystemDTO> createSystem(@Valid @RequestBody SystemDTO systemDTO) throws URISyntaxException {
+    public ResponseEntity<SystemAppDTO> createSystem(@Valid @RequestBody SystemAppDTO systemDTO) throws URISyntaxException {
         log.debug("REST request to save System : {}", systemDTO);
         if (systemDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert(ENTITY_NAME, "idexists", "A new system cannot already have an ID")).body(null);
         }
-        SystemDTO result = systemService.save(systemDTO);
+        SystemAppDTO result = systemService.save(systemDTO);
         return ResponseEntity.created(new URI("/api/systems/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -71,12 +71,12 @@ public class SystemResource {
      */
     @PutMapping("/systems")
     @Timed
-    public ResponseEntity<SystemDTO> updateSystem(@Valid @RequestBody SystemDTO systemDTO) throws URISyntaxException {
+    public ResponseEntity<SystemAppDTO> updateSystem(@Valid @RequestBody SystemAppDTO systemDTO) throws URISyntaxException {
         log.debug("REST request to update System : {}", systemDTO);
         if (systemDTO.getId() == null) {
             return createSystem(systemDTO);
         }
-        SystemDTO result = systemService.save(systemDTO);
+        SystemAppDTO result = systemService.save(systemDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, systemDTO.getId().toString()))
             .body(result);
@@ -90,9 +90,9 @@ public class SystemResource {
      */
     @GetMapping("/systems")
     @Timed
-    public ResponseEntity<List<SystemDTO>> getAllSystems(@ApiParam Pageable pageable) {
+    public ResponseEntity<List<SystemAppDTO>> getAllSystems(@ApiParam Pageable pageable) {
         log.debug("REST request to get a page of Systems");
-        Page<SystemDTO> page = systemService.findAll(pageable);
+        Page<SystemAppDTO> page = systemService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/systems");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
@@ -105,9 +105,9 @@ public class SystemResource {
      */
     @GetMapping("/systems/{id}")
     @Timed
-    public ResponseEntity<SystemDTO> getSystem(@PathVariable Long id) {
+    public ResponseEntity<SystemAppDTO> getSystem(@PathVariable Long id) {
         log.debug("REST request to get System : {}", id);
-        SystemDTO systemDTO = systemService.findOne(id);
+        SystemAppDTO systemDTO = systemService.findOne(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(systemDTO));
     }
 

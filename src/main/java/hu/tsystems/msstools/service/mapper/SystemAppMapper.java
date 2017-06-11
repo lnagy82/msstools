@@ -1,7 +1,7 @@
 package hu.tsystems.msstools.service.mapper;
 
-import hu.tsystems.msstools.domain.System;
-import hu.tsystems.msstools.service.dto.SystemDTO;
+import hu.tsystems.msstools.domain.SystemApp;
+import hu.tsystems.msstools.service.dto.SystemAppDTO;
 
 import org.mapstruct.*;
 import org.springframework.stereotype.Component;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
  * Mapper for the entity System and its DTO SystemDTO.
  */
 @Mapper(componentModel = "spring", uses = {})
-public interface SystemMapper extends EntityMapper <SystemDTO, System> {
+public interface SystemAppMapper extends EntityMapper <SystemAppDTO, SystemApp> {
     
     
     /**
@@ -21,11 +21,11 @@ public interface SystemMapper extends EntityMapper <SystemDTO, System> {
      * @return the entity instance
      */
      
-    default System fromId(Long id) {
+    default SystemApp fromId(Long id) {
         if (id == null) {
             return null;
         }
-        System system = new System();
+        SystemApp system = new SystemApp();
         system.setId(id);
         return system;
     }

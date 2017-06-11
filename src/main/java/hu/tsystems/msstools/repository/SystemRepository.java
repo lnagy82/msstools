@@ -1,6 +1,6 @@
 package hu.tsystems.msstools.repository;
 
-import hu.tsystems.msstools.domain.System;
+import hu.tsystems.msstools.domain.SystemApp;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -11,6 +11,6 @@ import org.springframework.data.jpa.repository.*;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface SystemRepository extends JpaRepository<System,Long> {
+public interface SystemRepository extends JpaRepository<SystemApp,Long> {
 
 }

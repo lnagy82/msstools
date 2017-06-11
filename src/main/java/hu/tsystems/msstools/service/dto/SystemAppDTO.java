@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * A DTO for the System entity.
  */
-public class SystemDTO implements Serializable {
+public class SystemAppDTO implements Serializable {
 
     private Long id;
 
@@ -62,7 +62,7 @@ public class SystemDTO implements Serializable {
             return false;
         }
 
-        SystemDTO systemDTO = (SystemDTO) o;
+        SystemAppDTO systemDTO = (SystemAppDTO) o;
         if(systemDTO.getId() == null || getId() == null) {
             return false;
         }

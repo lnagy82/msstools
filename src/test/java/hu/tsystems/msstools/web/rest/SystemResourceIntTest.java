@@ -2,11 +2,11 @@ package hu.tsystems.msstools.web.rest;
 
 import hu.tsystems.msstools.MsstoolsApp;
 
-import hu.tsystems.msstools.domain.System;
+import hu.tsystems.msstools.domain.SystemApp;
 import hu.tsystems.msstools.repository.SystemRepository;
 import hu.tsystems.msstools.service.SystemService;
-import hu.tsystems.msstools.service.dto.SystemDTO;
-import hu.tsystems.msstools.service.mapper.SystemMapper;
+import hu.tsystems.msstools.service.dto.SystemAppDTO;
+import hu.tsystems.msstools.service.mapper.SystemAppMapper;
 import hu.tsystems.msstools.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
@@ -34,7 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 /**
  * Test class for the SystemResource REST controller.
  *
- * @see SystemResource
+ * @see SystemAppResource
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = MsstoolsApp.class)
@@ -53,7 +53,7 @@ public class SystemResourceIntTest {
     private SystemRepository systemRepository;
 
     @Autowired
-    private SystemMapper systemMapper;
+    private SystemAppMapper systemMapper;
 
     @Autowired
     private SystemService systemService;
@@ -72,12 +72,12 @@ public class SystemResourceIntTest {
 
     private MockMvc restSystemMockMvc;
 
-    private System system;
+    private SystemApp system;
 
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        SystemResource systemResource = new SystemResource(systemService);
+        SystemAppResource systemResource = new SystemAppResource(systemService);
         this.restSystemMockMvc = MockMvcBuilders.standaloneSetup(systemResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -90,8 +90,8 @@ public class SystemResourceIntTest {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static System createEntity(EntityManager em) {
-        System system = new System()
+    public static SystemApp createEntity(EntityManager em) {
+        SystemApp system = new SystemApp()
             .name(DEFAULT_NAME)
             .ip(DEFAULT_IP)
             .port(DEFAULT_PORT);
@@ -109,16 +109,16 @@ public class SystemResourceIntTest {
         int databaseSizeBeforeCreate = systemRepository.findAll().size();
 
         // Create the System
-        SystemDTO systemDTO = systemMapper.toDto(system);
+        SystemAppDTO systemDTO = systemMapper.toDto(system);
         restSystemMockMvc.perform(post("/api/systems")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(systemDTO)))
             .andExpect(status().isCreated());
 
         // Validate the System in the database
-        List<System> systemList = systemRepository.findAll();
+        List<SystemApp> systemList = systemRepository.findAll();
         assertThat(systemList).hasSize(databaseSizeBeforeCreate + 1);
-        System testSystem = systemList.get(systemList.size() - 1);
+        SystemApp testSystem = systemList.get(systemList.size() - 1);
         assertThat(testSystem.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testSystem.getIp()).isEqualTo(DEFAULT_IP);
         assertThat(testSystem.getPort()).isEqualTo(DEFAULT_PORT);
@@ -131,7 +131,7 @@ public class SystemResourceIntTest {
 
         // Create the System with an existing ID
         system.setId(1L);
-        SystemDTO systemDTO = systemMapper.toDto(system);
+        SystemAppDTO systemDTO = systemMapper.toDto(system);
 
         // An entity with an existing ID cannot be created, so this API call must fail
         restSystemMockMvc.perform(post("/api/systems")
@@ -140,7 +140,7 @@ public class SystemResourceIntTest {
             .andExpect(status().isBadRequest());
 
         // Validate the Alice in the database
-        List<System> systemList = systemRepository.findAll();
+        List<SystemApp> systemList = systemRepository.findAll();
         assertThat(systemList).hasSize(databaseSizeBeforeCreate);
     }
 
@@ -152,14 +152,14 @@ public class SystemResourceIntTest {
         system.setName(null);
 
         // Create the System, which fails.
-        SystemDTO systemDTO = systemMapper.toDto(system);
+        SystemAppDTO systemDTO = systemMapper.toDto(system);
 
         restSystemMockMvc.perform(post("/api/systems")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(systemDTO)))
             .andExpect(status().isBadRequest());
 
-        List<System> systemList = systemRepository.findAll();
+        List<SystemApp> systemList = systemRepository.findAll();
         assertThat(systemList).hasSize(databaseSizeBeforeTest);
     }
 
@@ -171,14 +171,14 @@ public class SystemResourceIntTest {
         system.setIp(null);
 
         // Create the System, which fails.
-        SystemDTO systemDTO = systemMapper.toDto(system);
+        SystemAppDTO systemDTO = systemMapper.toDto(system);
 
         restSystemMockMvc.perform(post("/api/systems")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(systemDTO)))
             .andExpect(status().isBadRequest());
 
-        List<System> systemList = systemRepository.findAll();
+        List<SystemApp> systemList = systemRepository.findAll();
         assertThat(systemList).hasSize(databaseSizeBeforeTest);
     }
 
@@ -190,14 +190,14 @@ public class SystemResourceIntTest {
         system.setPort(null);
 
         // Create the System, which fails.
-        SystemDTO systemDTO = systemMapper.toDto(system);
+        SystemAppDTO systemDTO = systemMapper.toDto(system);
 
         restSystemMockMvc.perform(post("/api/systems")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(systemDTO)))
             .andExpect(status().isBadRequest());
 
-        List<System> systemList = systemRepository.findAll();
+        List<SystemApp> systemList = systemRepository.findAll();
         assertThat(systemList).hasSize(databaseSizeBeforeTest);
     }
 
@@ -249,12 +249,12 @@ public class SystemResourceIntTest {
         int databaseSizeBeforeUpdate = systemRepository.findAll().size();
 
         // Update the system
-        System updatedSystem = systemRepository.findOne(system.getId());
+        SystemApp updatedSystem = systemRepository.findOne(system.getId());
         updatedSystem
             .name(UPDATED_NAME)
             .ip(UPDATED_IP)
             .port(UPDATED_PORT);
-        SystemDTO systemDTO = systemMapper.toDto(updatedSystem);
+        SystemAppDTO systemDTO = systemMapper.toDto(updatedSystem);
 
         restSystemMockMvc.perform(put("/api/systems")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -262,9 +262,9 @@ public class SystemResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the System in the database
-        List<System> systemList = systemRepository.findAll();
+        List<SystemApp> systemList = systemRepository.findAll();
         assertThat(systemList).hasSize(databaseSizeBeforeUpdate);
-        System testSystem = systemList.get(systemList.size() - 1);
+        SystemApp testSystem = systemList.get(systemList.size() - 1);
         assertThat(testSystem.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testSystem.getIp()).isEqualTo(UPDATED_IP);
         assertThat(testSystem.getPort()).isEqualTo(UPDATED_PORT);
@@ -276,7 +276,7 @@ public class SystemResourceIntTest {
         int databaseSizeBeforeUpdate = systemRepository.findAll().size();
 
         // Create the System
-        SystemDTO systemDTO = systemMapper.toDto(system);
+        SystemAppDTO systemDTO = systemMapper.toDto(system);
 
         // If the entity doesn't have an ID, it will be created instead of just being updated
         restSystemMockMvc.perform(put("/api/systems")
@@ -285,7 +285,7 @@ public class SystemResourceIntTest {
             .andExpect(status().isCreated());
 
         // Validate the System in the database
-        List<System> systemList = systemRepository.findAll();
+        List<SystemApp> systemList = systemRepository.findAll();
         assertThat(systemList).hasSize(databaseSizeBeforeUpdate + 1);
     }
 
@@ -302,17 +302,17 @@ public class SystemResourceIntTest {
             .andExpect(status().isOk());
 
         // Validate the database is empty
-        List<System> systemList = systemRepository.findAll();
+        List<SystemApp> systemList = systemRepository.findAll();
         assertThat(systemList).hasSize(databaseSizeBeforeDelete - 1);
     }
 
     @Test
     @Transactional
     public void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(System.class);
-        System system1 = new System();
+        TestUtil.equalsVerifier(SystemApp.class);
+        SystemApp system1 = new SystemApp();
         system1.setId(1L);
-        System system2 = new System();
+        SystemApp system2 = new SystemApp();
         system2.setId(system1.getId());
         assertThat(system1).isEqualTo(system2);
         system2.setId(2L);
@@ -324,10 +324,10 @@ public class SystemResourceIntTest {
     @Test
     @Transactional
     public void dtoEqualsVerifier() throws Exception {
-        TestUtil.equalsVerifier(SystemDTO.class);
-        SystemDTO systemDTO1 = new SystemDTO();
+        TestUtil.equalsVerifier(SystemAppDTO.class);
+        SystemAppDTO systemDTO1 = new SystemAppDTO();
         systemDTO1.setId(1L);
-        SystemDTO systemDTO2 = new SystemDTO();
+        SystemAppDTO systemDTO2 = new SystemAppDTO();
         assertThat(systemDTO1).isNotEqualTo(systemDTO2);
         systemDTO2.setId(systemDTO1.getId());
         assertThat(systemDTO1).isEqualTo(systemDTO2);

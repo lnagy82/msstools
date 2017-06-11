@@ -1,9 +1,9 @@
 package hu.tsystems.msstools.service;
 
-import hu.tsystems.msstools.domain.System;
+import hu.tsystems.msstools.domain.SystemApp;
 import hu.tsystems.msstools.repository.SystemRepository;
-import hu.tsystems.msstools.service.dto.SystemDTO;
-import hu.tsystems.msstools.service.mapper.SystemMapper;
+import hu.tsystems.msstools.service.dto.SystemAppDTO;
+import hu.tsystems.msstools.service.mapper.SystemAppMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -24,9 +24,9 @@ public class SystemService {
     
     private final SystemRepository systemRepository;
 
-    private final SystemMapper systemMapper;
+    private final SystemAppMapper systemMapper;
 
-    public SystemService(SystemRepository systemRepository, SystemMapper systemMapper) {
+    public SystemService(SystemRepository systemRepository, SystemAppMapper systemMapper) {
         this.systemRepository = systemRepository;
         this.systemMapper = systemMapper;
     }
@@ -37,11 +37,11 @@ public class SystemService {
      * @param systemDTO the entity to save
      * @return the persisted entity
      */
-    public SystemDTO save(SystemDTO systemDTO) {
+    public SystemAppDTO save(SystemAppDTO systemDTO) {
         log.debug("Request to save System : {}", systemDTO);
-        System system = systemMapper.toEntity(systemDTO);
+        SystemApp system = systemMapper.toEntity(systemDTO);
         system = systemRepository.save(system);
-        SystemDTO result = systemMapper.toDto(system);
+        SystemAppDTO result = systemMapper.toDto(system);
         return result;
     }
 
@@ -52,9 +52,9 @@ public class SystemService {
      *  @return the list of entities
      */
     @Transactional(readOnly = true)
-    public Page<SystemDTO> findAll(Pageable pageable) {
+    public Page<SystemAppDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Systems");
-        Page<System> result = systemRepository.findAll(pageable);
+        Page<SystemApp> result = systemRepository.findAll(pageable);
         return result.map(system -> systemMapper.toDto(system));
     }
 
@@ -65,10 +65,10 @@ public class SystemService {
      *  @return the entity
      */
     @Transactional(readOnly = true)
-    public SystemDTO findOne(Long id) {
+    public SystemAppDTO findOne(Long id) {
         log.debug("Request to get System : {}", id);
-        System system = systemRepository.findOne(id);
-        SystemDTO systemDTO = systemMapper.toDto(system);
+        SystemApp system = systemRepository.findOne(id);
+        SystemAppDTO systemDTO = systemMapper.toDto(system);
         return systemDTO;
     }
 

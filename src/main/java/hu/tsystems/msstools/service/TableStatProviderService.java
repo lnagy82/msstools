@@ -1,15 +1,15 @@
 package hu.tsystems.msstools.service;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
-
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +19,7 @@ import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.UserInfo;
 
+import hu.tsystems.msstools.domain.SystemApp;
 import hu.tsystems.msstools.repository.SystemRepository;
 import hu.tsystems.msstools.service.dto.TableStatDTO;
 
@@ -61,13 +62,13 @@ public class TableStatProviderService {
 		}
 	}
 
-	public List<TableStatDTO> getResult() throws Exception {
+	private List<TableStatDTO> getResult(SystemApp app) throws Exception {
 
-		String host = "10.82.128.145"; // First level target
+		String host = app.getIp(); // First level target
 		String user = "ths";
 		String password = "ths";
 		String tunnelRemoteHost = "localhost"; // The host of the second target
-		int port = 22;
+		int port = app.getPort();
 
 		JSch jsch = new JSch();
 		Session session = jsch.getSession(user, host, port);
@@ -88,7 +89,7 @@ public class TableStatProviderService {
 		return result;
 	}
 
-	public List<TableStatDTO> query(int rport) throws SQLException {
+	private List<TableStatDTO> query(int rport) throws SQLException {
 
 		String dbuserNameAlfresco = "ths";
 		String dbpasswordAlfresco = "ths";
@@ -106,7 +107,7 @@ public class TableStatProviderService {
 			System.out.println("Database connection established");
 
 			dbConnAlfresco.setAutoCommit(false);
-			String qnameSQL = "select * from pg_stat_all_tables;";
+			String qnameSQL = "select * from pg_stat_all_tables where schemaname = 'ths';";
 
 			PreparedStatement prepStmnt = dbConnAlfresco.prepareStatement(qnameSQL);
 			ResultSet rs = prepStmnt.executeQuery();
@@ -138,10 +139,10 @@ public class TableStatProviderService {
 		dto.setAutovacuumCount(rs.getBigDecimal("autovacuum_count"));
 		dto.setIdxScan(rs.getBigDecimal("idx_scan"));
 		dto.setIdxTupFetch(rs.getBigDecimal("idx_tup_fetch"));
-		dto.setLastAnalyze(rs.getDate("last_analyze").toLocalDate());
-		dto.setLastAutoanalyze(rs.getDate("last_autoanalyze").toLocalDate());
-		dto.setLastAutovacuum(rs.getDate("last_autovacuum").toLocalDate());
-		dto.setLastVacuum(rs.getDate("last_vacuum").toLocalDate());
+		dto.setLastAnalyze(createLocalDate(rs.getDate("last_analyze")));
+		dto.setLastAutoanalyze(createLocalDate(rs.getDate("last_autoanalyze")));
+		dto.setLastAutovacuum(createLocalDate(rs.getDate("last_autovacuum")));
+		dto.setLastVacuum(createLocalDate(rs.getDate("last_vacuum")));
 		dto.setnDeadTup(rs.getBigDecimal("n_dead_tup"));
 		dto.setnLiveTup(rs.getBigDecimal("n_live_tup"));
 		dto.setnTupDel(rs.getBigDecimal("n_tup_del"));
@@ -157,8 +158,27 @@ public class TableStatProviderService {
 	}
 	
 	
-	public void updateAll(){
-
+	private LocalDate createLocalDate(java.sql.Date date){
+		if(date == null)
+			return null;
+		else
+			return date.toLocalDate();
+	}
+	
+	public void updateAll() throws Exception{
+		List<SystemApp> apps = systemRepository.findAll();
+		LocalDate updateTime = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();;
+		for (SystemApp systemApp : apps) {
+			List<TableStatDTO> tableStats = getResult(systemApp);
+			
+			for (TableStatDTO tableStatDTO : tableStats) {
+				tableStatDTO.setSystemId(systemApp.getId());
+				tableStatDTO.setSystemName(systemApp.getName());
+				tableStatDTO.setUpdateTime(updateTime);
+				tableStatDTO.setUpdateNumber(1);
+				tableStatService.save(tableStatDTO);
+			}
+		}
 	}
 
 //	private ZonedDateTime createZonedDateTime(Date date) {

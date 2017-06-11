@@ -91,7 +91,7 @@ public class TableStat implements Serializable {
     private LocalDate lastAutoanalyze;
 
     @ManyToOne
-    private System system;
+    private SystemApp system;
 
     public Long getId() {
         return id;
@@ -387,16 +387,16 @@ public class TableStat implements Serializable {
         this.lastAutoanalyze = lastAutoanalyze;
     }
 
-    public System getSystem() {
+    public SystemApp getSystem() {
         return system;
     }
 
-    public TableStat system(System system) {
+    public TableStat system(SystemApp system) {
         this.system = system;
         return this;
     }
 
-    public void setSystem(System system) {
+    public void setSystem(SystemApp system) {
         this.system = system;
     }
 
