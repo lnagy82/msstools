@@ -17,12 +17,12 @@ public class SchedulerService {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     
     @Autowired
-    private TableStatService tableStatService;
+    private TableStatProviderService tableStatProviderService;
 
     @Scheduled(fixedRate = 60000)
     public void reportCurrentTime() throws Exception {
         log.info("The time is now {}", dateFormat.format(new Date()));
         
-        tableStatService.updateAll();
+        tableStatProviderService.updateAll();
     }
 }

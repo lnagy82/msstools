@@ -12,18 +12,29 @@ import java.util.ArrayList;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
 import com.jcraft.jsch.UserInfo;
 
+import hu.tsystems.msstools.repository.SystemRepository;
 import hu.tsystems.msstools.service.dto.TableStatDTO;
 
 @Component
 public class TableStatProviderService {
+	
+	@Autowired
+	private SystemRepository systemRepository;
+	
+	@Autowired
+	private TableStatService tableStatService;
+	
+	@Autowired
+	private SystemService systemService;
 
-	class localUserInfo implements UserInfo {
+	class LocalUserInfo implements UserInfo {
 		String passwd;
 
 		public String getPassword() {
@@ -61,7 +72,7 @@ public class TableStatProviderService {
 		JSch jsch = new JSch();
 		Session session = jsch.getSession(user, host, port);
 		session.setPassword(password);
-		localUserInfo lui = new localUserInfo();
+		LocalUserInfo lui = new LocalUserInfo();
 		session.setUserInfo(lui);
 		session.setConfig("StrictHostKeyChecking", "no");
 		
@@ -127,10 +138,10 @@ public class TableStatProviderService {
 		dto.setAutovacuumCount(rs.getBigDecimal("autovacuum_count"));
 		dto.setIdxScan(rs.getBigDecimal("idx_scan"));
 		dto.setIdxTupFetch(rs.getBigDecimal("idx_tup_fetch"));
-		dto.setLastAnalyze(createZonedDateTime(rs.getDate("last_analyze")));
-		dto.setLastAutoanalyze(createZonedDateTime(rs.getDate("last_autoanalyze")));
-		dto.setLastAutovacuum(createZonedDateTime(rs.getDate("last_autovacuum")));
-		dto.setLastVacuum(createZonedDateTime(rs.getDate("last_vacuum")));
+		dto.setLastAnalyze(rs.getDate("last_analyze").toLocalDate());
+		dto.setLastAutoanalyze(rs.getDate("last_autoanalyze").toLocalDate());
+		dto.setLastAutovacuum(rs.getDate("last_autovacuum").toLocalDate());
+		dto.setLastVacuum(rs.getDate("last_vacuum").toLocalDate());
 		dto.setnDeadTup(rs.getBigDecimal("n_dead_tup"));
 		dto.setnLiveTup(rs.getBigDecimal("n_live_tup"));
 		dto.setnTupDel(rs.getBigDecimal("n_tup_del"));
@@ -144,12 +155,17 @@ public class TableStatProviderService {
 		dto.setVacuumCount(rs.getBigDecimal("vacuum_count"));
 		return dto;
 	}
+	
+	
+	public void updateAll(){
 
-	private ZonedDateTime createZonedDateTime(Date date) {
-		if (date == null) {
-			return null;
-		} else {
-			return ZonedDateTime.of(date.toLocalDate().atStartOfDay(), ZoneId.systemDefault());
-		}
 	}
+
+//	private ZonedDateTime createZonedDateTime(Date date) {
+//		if (date == null) {
+//			return null;
+//		} else {
+//			return ZonedDateTime.of(date.toLocalDate().atStartOfDay(), ZoneId.systemDefault());
+//		}
+//	}
 }
